@@ -56,7 +56,8 @@ the desktop while exercising these steps in a browser at port 8501:
    filename/location/chunk text, retrieval trace, and latency. Ask a follow-up about the same topic.
 5. Ask a greeting ("Hello"); verify no retrieval and no invented citations.
 6. Ask "Who is the CEO?"; verify the agent says the documents do not contain the answer.
-7. Upload PDF and DOCX fixtures generated with `tests/make_ui_fixtures.py`; query their facts.
+7. Run `.venv/bin/python -m tests.make_ui_fixtures`. Upload `artifacts/ui-fixtures/warranty.pdf`
+   and `support.docx`; query warranty and support facts, verify page/block source locations.
 8. Try invalid content in a supported extension; verify a safe error and the app still works.
 9. Reload and verify persistence; use **Clear conversation** and verify chat clears but documents remain.
 10. Stop recording; attach the video to the UI PR/deliverable, never commit media.

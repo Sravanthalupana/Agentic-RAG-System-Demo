@@ -74,4 +74,28 @@ on document questions; no-citation greetings/abstentions score valid. Per-questi
 Evaluation uses a fresh temporary store, never your uploaded corpus. OpenAI mode makes paid calls.
 
 `--offline` uses hashed lexical embeddings and extractive fake answers to validate wiring; **its
-scores do not represent OpenAI performance**. The Streamlit UI arrives in the next slice.
+scores do not represent OpenAI performance**.
+
+## Web UI
+
+```sh
+.venv/bin/python -m streamlit run app.py --server.address 0.0.0.0 --server.port 8501
+```
+
+Open `http://localhost:8501` on your own machine. Select **OpenAI** (needs a server-side key)
+or the clearly labeled **Offline demo**, upload documents, and click **Index documents**.
+Ask questions and follow-ups; expand sources to see the cited text and provenance, or the retrieval
+trace to see actual search queries. Each response reports latency and retrieval count.
+**Clear conversation** clears chat history but keeps indexed documents. Reloads retain the store,
+not the chat. Provider switches clear chat and isolate offline vectors in `.data/offline/`.
+
+### Privacy and limits
+
+This is a trusted, single-workspace **local demo**, not a production multi-tenant service. Anyone
+with access to the server can query its shared documents. Do not expose it publicly without adding
+authentication and per-user storage. Documents are stored unencrypted locally; OpenAI mode sends
+document chunks and question/history text to OpenAI. Offline mode sends no content to OpenAI.
+No OCR, image extraction, streaming generation, or production authorization is included.
+
+Generate browser-test fixtures with `.venv/bin/python -m tests.make_ui_fixtures`; follow
+`.agents/skills/test-app/SKILL.md` for recorded browser tests before UI PRs.

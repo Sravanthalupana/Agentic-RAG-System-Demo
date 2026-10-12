@@ -1,0 +1,4 @@
+Operations guide
+Production data is hosted in the eu-west-1 region.
+Database backups run every 6 hours and are retained for 30 days.
+Incident escalations go to the on-call engineer.
